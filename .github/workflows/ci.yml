@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    # Restore both projects (the solution only contains the main project,
+    # so the test project must be restored separately)
+    - name: Restore dependencies
+      run: |
+        dotnet restore VDManager/VDManager.sln
+        dotnet restore VDManager.Tests/VDManager.Tests.csproj
+
+    # Build the main project.
+    # /p:WindowsPackageType=None disables MSIX packaging in CI — we have no
+    # signing certificate here and only want to verify the code compiles.
+    - name: Build main project
+      run: dotnet build VDManager/VDManager.csproj --configuration Release --no-restore /p:WindowsPackageType=None
+
+    # Build the test project explicitly so the DLL exists before we run tests
+    - name: Build test project
+      run: dotnet build VDManager.Tests/VDManager.Tests.csproj --configuration Release --no-restore
+
+    # Run tests against the already-built DLL
+    - name: Run tests
+      run: dotnet test VDManager.Tests/VDManager.Tests.csproj --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage"
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: VDManager.Tests/TestResults
+
+    # Publish a plain executable for download/review (not a signed MSIX)
+    - name: Publish application
+      run: dotnet publish VDManager/VDManager.csproj --configuration Release --output publish/ --self-contained false /p:WindowsPackageType=None
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: VDManager-Build
+        path: publish/
+        retention-days: 7

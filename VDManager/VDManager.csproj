@@ -1,0 +1,126 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <!-- Windows 10 1809 (17763) minimum — required for Windows.Services.Store WinRT APIs -->
+    <TargetFramework>net8.0-windows10.0.17763.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- Rename EXE to DeskBulldozer.exe (default would be VDManager.exe) -->
+    <AssemblyName>DeskBulldozer</AssemblyName>
+    <!-- FileDescription shown in Task Manager, tray notification header, etc. -->
+    <AssemblyTitle>DeskBulldozer</AssemblyTitle>
+
+    <!-- Version and Assembly Info -->
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <InformationalVersion>1.0.0</InformationalVersion>
+
+    <!-- Product Information -->
+    <Product>DeskBulldozer</Product>
+    <Description>Advanced Windows Virtual Desktop Manager with rule-based automation, hotkeys, and window layouts</Description>
+    <Copyright>Copyright © 2026</Copyright>
+    <Company>DeskBulldozer</Company>
+    <Authors>DeskBulldozer Contributors</Authors>
+
+    <!-- Build Configuration -->
+    <Deterministic>true</Deterministic>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <Platforms>AnyCPU;x64</Platforms>
+
+    <!-- MSIX Packaging for Microsoft Store -->
+    <!-- Partner Center identity:
+         Store ID : 9N3XH2VMGZ7Q
+         PFN      : BulldozerLabs.DeskBulldozer_wqh30xq97q3wc
+    -->
+    <WindowsPackageType>MSIX</WindowsPackageType>
+    <ApplicationId>BulldozerLabs.DeskBulldozer</ApplicationId>
+    <ApplicationDisplayVersion>1.0.0.0</ApplicationDisplayVersion>
+    <ApplicationVersion1>1</ApplicationVersion1>
+    <ApplicationVersion2>0</ApplicationVersion2>
+    <ApplicationVersion3>0</ApplicationVersion3>
+    <ApplicationVersion4>0</ApplicationVersion4>
+    <!-- Set AppxPackageSigningEnabled to true and supply your cert thumbprint
+         when building the final Store submission package. -->
+    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
+
+    <!-- Application icon (taskbar, Explorer, Alt+Tab) -->
+    <ApplicationIcon>app.ico</ApplicationIcon>
+
+    <!-- Embedded Win32 manifest — declares PerMonitorV2 DPI awareness for Store validation -->
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+
+    <!-- Runtime DPI mode passed to ApplicationConfiguration.Initialize() -->
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- app.ico — embedded as the Win32 resource icon -->
+    <Content Include="app.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+
+    <!-- MSIX Store assets — all PNGs in Assets\ packed into the MSIX -->
+    <Content Include="Assets\**\*.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+
+    <!-- Copy VirtualDesktopAccessor.dll to root of output directory (not in Native subfolder) -->
+    <None Include="Native\VirtualDesktopAccessor.dll" Link="VirtualDesktopAccessor.dll" CopyToOutputDirectory="PreserveNewest" Condition="Exists('Native\VirtualDesktopAccessor.dll')" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="HotkeyEditorDialog.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>HotkeyEditorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Update="RuleEditorDialog.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RuleEditorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Update="LaunchEntryEditorDialog.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LaunchEntryEditorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Update="LaunchProfileEditorDialog.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LaunchProfileEditorDialog.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="HotkeyEditorDialog.resx">
+      <DependentUpon>HotkeyEditorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="RuleEditorDialog.resx">
+      <DependentUpon>RuleEditorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="LaunchEntryEditorDialog.resx">
+      <DependentUpon>LaunchEntryEditorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="LaunchProfileEditorDialog.resx">
+      <DependentUpon>LaunchProfileEditorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,58 @@
+node_modules/
+npm-debug.log*
+__pycache__/
+*.pyc
+
+# IDE / editor files
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# .NET / Visual Studio build outputs
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+artifacts/
+TestResults/
+[Ll]og/
+[Ll]ogs/
+
+# NuGet / packages
+packages/
+*.nupkg
+*.snupkg
+
+# Publish / packaging artifacts
+publish/
+publish-*/
+*.msix
+*.msixupload
+*.msixbundle
+*.appx
+*.appxbundle
+*.appxupload
+DeskBulldozer.Package/AppPackages/
+DeskBulldozer.Package/BundleArtifacts/
+DeskBulldozer.Package/*.assets.cache
+DeskBulldozer.Package/*.wapproj.user
+DeskBulldozer.Package/Package.StoreAssociation.xml
+
+# External/native runtime dependency downloaded separately
+VDManager/Native/*.dll
+
+# Windows junk
+Thumbs.db
+ehthumbs.db
+Desktop.ini

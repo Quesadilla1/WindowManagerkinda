@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Package.appxmanifest — Microsoft Store / MSIX packaging manifest for DeskBulldozer
+  ──────────────────────────────────────────────────────────────────────────────────
+  BEFORE PUBLISHING:
+    1. Replace the Publisher value below with the Publisher CN assigned to you
+       in Microsoft Partner Center (e.g. CN=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX).
+    2. Replace the Name value with the Package/Identity Name from Partner Center.
+    2. Add your logo image assets to the Assets\ folder at the sizes listed below.
+    3. Review and update MinVersion / MaxVersionTested as needed.
+    4. If you want a paid trial, configure it in Partner Center — no manifest change needed.
+-->
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap mp uap5 rescap">
+
+  <!-- ═══════════════════════════════════════════════════════
+       IDENTITY — values from Partner Center → Product Identity
+       ═══════════════════════════════════════════════════════ -->
+  <Identity
+    Name="BulldozerLabs.DeskBulldozer"
+    Publisher="CN=DD133EC9-3AC2-412F-921A-9475DA025406"
+    Version="1.0.0.0"
+    ProcessorArchitecture="x64" />
+
+  <mp:PhoneIdentity
+    PhoneProductId="00000000-0000-0000-0000-000000000000"
+    PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+
+  <!-- ═══════════════════════════════════════════════════════
+       STORE METADATA
+       Store ID: 9N3XH2VMGZ7Q
+       PFN:      BulldozerLabs.DeskBulldozer_wqh30xq97q3wc
+       ═══════════════════════════════════════════════════════ -->
+  <Properties>
+    <DisplayName>DeskBulldozer</DisplayName>
+    <PublisherDisplayName>Bulldozer Labs</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+    <Description>Advanced Windows Virtual Desktop Manager with rule-based automation, hotkeys, and window layouts.</Description>
+  </Properties>
+
+  <!-- ═══════════════════════════════════════════════════════
+       TARGET / SUPPORTED WINDOWS VERSIONS
+       Min: 1809 (17763) — required for Windows.Services.Store
+       ═══════════════════════════════════════════════════════ -->
+  <Dependencies>
+    <TargetDeviceFamily
+      Name="Windows.Desktop"
+      MinVersion="10.0.17763.0"
+      MaxVersionTested="10.0.22621.0" />
+  </Dependencies>
+
+  <!-- ═══════════════════════════════════════════════════════
+       RESOURCES
+       ═══════════════════════════════════════════════════════ -->
+  <Resources>
+    <Resource Language="en-US" />
+  </Resources>
+
+  <!-- ═══════════════════════════════════════════════════════
+       APPLICATIONS
+       ═══════════════════════════════════════════════════════ -->
+  <Applications>
+    <Application
+      Id="DeskBulldozer"
+      Executable="DeskBulldozer.exe"
+      EntryPoint="Windows.FullTrustApplication">
+
+      <uap:VisualElements
+        DisplayName="DeskBulldozer"
+        Description="Advanced Windows Virtual Desktop Manager"
+        BackgroundColor="transparent"
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png">
+
+        <uap:DefaultTile
+          Wide310x150Logo="Assets\Wide310x150Logo.png"
+          Square71x71Logo="Assets\SmallTile.png"
+          Square310x310Logo="Assets\Square310x310Logo.png"
+          ShortName="DeskBulldozer">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="wide310x150Logo" />
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
+
+        <uap:SplashScreen
+          Image="Assets\SplashScreen.png"
+          BackgroundColor="#1E1E2E" />
+
+        <uap:LockScreen
+          Notification="badge"
+          BadgeLogo="Assets\BadgeLogo.png" />
+
+      </uap:VisualElements>
+
+      <!-- ─────────────────────────────────────────────────
+           STARTUP TASK (replaces registry Run key for MSIX)
+           The user enables/disables this via Windows Settings →
+           Apps → Startup, so StartupManager uses this instead
+           of the registry when running as a packaged app.
+           ───────────────────────────────────────────────── -->
+      <Extensions>
+        <uap5:Extension Category="windows.startupTask" Executable="DeskBulldozer.exe" EntryPoint="Windows.FullTrustApplication">
+          <uap5:StartupTask
+            TaskId="DeskBulldozerStartup"
+            Enabled="false"
+            DisplayName="DeskBulldozer" />
+        </uap5:Extension>
+      </Extensions>
+
+    </Application>
+  </Applications>
+
+  <!-- ═══════════════════════════════════════════════════════
+       CAPABILITIES
+       runFullTrust  — required for Win32 / P/Invoke, global hotkeys,
+                       window management, and VirtualDesktopAccessor.dll
+       ═══════════════════════════════════════════════════════ -->
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+
+</Package>

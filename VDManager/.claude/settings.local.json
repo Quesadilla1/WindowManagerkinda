@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(REM Read-only check: confirm no .Designer.cs exists for RuleEditorDialog)",
+      "Bash(dir \"C:\\\\MainRepo\\\\WindowManager\\\\VDManager\\\\RuleEditorDialog*\")",
+      "Bash(dotnet build:*)",
+      "Bash(dir:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(git check-ignore:*)",
+      "Bash(git -C /c/MainRepo/WindowManager/VDManager rm:*)",
+      "Bash(git -C /c/MainRepo/WindowManager/VDManager add VDManager/.gitignore)",
+      "Bash(git -C /c/MainRepo/WindowManager/VDManager status)",
+      "Bash(git -C /c/MainRepo/WindowManager/VDManager add .gitignore)",
+      "Bash(git -C:*)",
+      "Bash(dotnet test:*)",
+      "Bash(grep:*)",
+      "Bash(sort:*)",
+      "Bash(wc:*)",
+      "Bash(find:*)"
+    ]
+  }
+}

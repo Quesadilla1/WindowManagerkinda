@@ -1,0 +1,22 @@
+VirtualDesktopAccessor.dll Download Instructions
+================================================
+
+This application requires the VirtualDesktopAccessor.dll to function properly.
+
+DOWNLOAD LINK:
+https://github.com/Ciantic/VirtualDesktopAccessor/releases
+
+INSTRUCTIONS:
+1. Visit the GitHub releases page (link above)
+2. Download the latest VirtualDesktopAccessor.dll
+3. Place the DLL in THIS folder (Native/)
+4. Rebuild the project or copy the DLL to the bin/Debug/net8.0-windows/ folder
+
+ARCHITECTURE NOTE:
+- Make sure to download the version matching your system architecture (x64 recommended)
+- The DLL must match your Windows version (Windows 10/11)
+
+After placing the DLL here, rebuild the project:
+  dotnet build
+
+The DLL will automatically be copied to the output directory during build.
