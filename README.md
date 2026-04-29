@@ -1,7 +1,6 @@
 # DeskBulldozer
 
 DeskBulldozer is a Windows desktop utility for keeping app windows organized across virtual desktops. It combines manual window controls with rules and hotkeys so frequently used apps open where you expect them.
-![Dark mode screenshot](docs/screenshot-dark.png)
 ## What it does
 
 - Move windows between virtual desktops
@@ -44,6 +43,8 @@ Then run the built app from the `VDManager` output folder, or open the solution 
 - The repo includes ignore rules for build artifacts and packaging output
 - If you do not need MSIX packaging, you can ignore `DeskBulldozer.Package/` for day-to-day development
 
-## License
-
-MIT
+![Dark mode screenshot](img/1.png)
+![Dark mode screenshot](img/2.png)
+![Dark mode screenshot](img/3.png)
+![Dark mode screenshot](img/4.png)
+![Dark mode screenshot](img/5.png)
