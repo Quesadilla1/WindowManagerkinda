@@ -19,8 +19,8 @@ DeskBulldozer is a Windows desktop utility for keeping app windows organized acr
 Download the native DLL from:
 https://github.com/Ciantic/VirtualDesktopAccessor/releases
 
-![Dark mode screenshot](img/1.png)
-![Dark mode screenshot](img/2.png)
-![Dark mode screenshot](img/3.png)
-![Dark mode screenshot](img/4.png)
-![Dark mode screenshot](img/5.png)
+![stuff1](img/1.png)
+![stuff2](img/2.png)
+![stuff3](img/3.png)
+![stuff4](img/4.png)
+![stuff5](img/5.png)
