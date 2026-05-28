@@ -1,4 +1,4 @@
-# DeskBulldozer works sometimes
+# DeskBulldozer
 
 DeskBulldozer is a Windows desktop utility for keeping app windows organized across virtual desktops. It combines manual window controls with rules and hotkeys.
 ## What it does
